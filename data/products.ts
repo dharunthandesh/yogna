@@ -56,7 +56,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'disp-mini-3000',
-    image: '/products/disp-mini-3000.jpeg',
+    image: '/products/disp-mini-3000.png',
     name: 'DISP MINI 3000',
     category: 'Aerosol Dispenser',
     categoryId: 'aerosol-dispenser',
@@ -177,7 +177,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'urinal-screen-k',
-    image: '/products/urinal-screen-k.jpg',
+    image: '/products/urinal-screen-k.png',
     name: 'URINAL SCREEN – K',
     category: 'Urinal Hygiene System',
     categoryId: 'urinal-hygiene',

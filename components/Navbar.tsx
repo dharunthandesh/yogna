@@ -24,8 +24,9 @@ export default function Navbar() {
   const toggleMenu = () => setMenuOpen(!menuOpen);
   const closeMenu = () => setMenuOpen(false);
 
-  // On home page, Hero has its own Lando Norris nav. Show floating navbar only once scrolled past Hero.
-  if (pathname === '/' && !pastHero) return null;
+  // Show floating glass navbar everywhere across all pages
+  // (matches product page design and stays fixed)
+  // if (pathname === '/' && !pastHero) return null;
 
   return (
     <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>

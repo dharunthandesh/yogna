@@ -518,47 +518,15 @@ export default function Hero() {
 
 
 
-        {/* LAYER 2: Floating Pill Navbar — visible only inside the hero */}
-        <div className="relative z-20 flex-shrink-0 w-full flex justify-center pt-2 sm:pt-3">
-          <nav className="hero-pill-nav">
-            {/* Logo left */}
-            <Link href="/" className="hero-pill-logo" aria-label="YOGNA Home">
-              YOG<span>NA</span>
-            </Link>
-
-            {/* Nav links centre-right */}
-            <ul className="hero-pill-links">
-              <li><Link href="/products" className="ln-roll-link">PRODUCTS</Link></li>
-              <li><a href="/#services" className="ln-roll-link">SERVICES</a></li>
-              <li><a href="/#partners" className="ln-roll-link">PARTNERS</a></li>
-              <li><a href="/#contact" className="ln-roll-link">CONTACT</a></li>
-            </ul>
-
-            {/* Cart icon far right */}
-            <button
-              type="button"
-              className="hero-pill-cart magnetic-el"
-              onClick={openCart}
-              aria-label={`Open enquiry cart, ${count} item${count !== 1 ? 's' : ''}`}
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <circle cx="9" cy="21" r="1" />
-                <circle cx="20" cy="21" r="1" />
-                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
-              </svg>
-              {count > 0 && (
-                <span className="cart-badge" aria-hidden="true">{count > 99 ? '99+' : count}</span>
-              )}
-            </button>
-          </nav>
-        </div>
+        {/* Spacer to maintain vertical spacing under the fixed floating navbar */}
+        <div aria-hidden="true" className="relative z-20 h-16 sm:h-20 flex-shrink-0" />
 
 
         {/* LAYER 3: Centerpiece Giant "YOGNA" Typography + Hero Composition */}
         <main className="relative z-10 my-auto flex flex-col items-center justify-center select-none py-2">
 
-          {/* Circular Logo Emblem above heading */}
-          <div className="hero-emblem-wrap mb-1 sm:mb-2">
+          {/* Circular Logo Emblem above heading (lifted up away from YOGNA text) */}
+          <div className="hero-emblem-wrap mb-6 sm:mb-8 md:mb-10 -translate-y-2 sm:-translate-y-4">
             <Image
               src="/images/yogna-logo-emblem.png"
               alt="YOGNA Emblem"
@@ -613,28 +581,8 @@ export default function Hero() {
 
         </main>
 
-        {/* LAYER 4: Bottom Metadata Bar */}
-        <footer className="relative z-20 w-full max-w-[1360px] mx-auto pb-1 sm:pb-2 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div
-            id="bottom-left-meta"
-            data-cursor="DECODE"
-            className="magnetic-el hover-underline-sweep text-[10px] sm:text-[11px] tracking-[0.25em] uppercase text-[#0A0A0A]/85 font-semibold flex items-center gap-2 cursor-pointer"
-          >
-            <span id="scramble-text">CORPORATE HYGIENE SOLUTIONS · EST. 2015</span>
-          </div>
-
-          <button
-            type="button"
-            id="scroll-explore-btn"
-            data-cursor="SCROLL"
-            className="magnetic-el hover-underline-sweep group flex items-center gap-3 text-[10px] sm:text-[11px] tracking-[0.25em] uppercase text-[#0A0A0A]/85 hover:text-[#D91E18] font-semibold transition-colors focus:outline-none"
-          >
-            <span className="relative w-8 sm:w-12 h-[2px] bg-black/30 group-hover:w-16 transition-all duration-300 overflow-hidden inline-block">
-              <span className="absolute inset-0 bg-[#D91E18] scroll-line-active" />
-            </span>
-            <span className="ln-roll-link roll-red-clone">SCROLL TO EXPLORE</span>
-          </button>
-        </footer>
+        {/* LAYER 4: Bottom Spacer (Metadata removed) */}
+        <div aria-hidden="true" className="relative z-20 h-4 sm:h-6 flex-shrink-0" />
       </section>
     </>
   );
