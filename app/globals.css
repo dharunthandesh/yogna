@@ -2845,3 +2845,165 @@ body.cursor-hover-cta .cursor-text {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
   pointer-events: none;
 }
+
+/* ─── Hero Composition: Emblem + Tagline + Pillars ─────────────────────────
+   Scoped only to #hero-stage. No existing styles modified.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.hero-emblem-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 11;
+}
+
+.hero-emblem-img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  border-radius: 50%;
+  display: block;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.18));
+}
+
+@media (min-width: 640px) {
+  .hero-emblem-img { width: 95px; height: 95px; }
+}
+@media (min-width: 1024px) {
+  .hero-emblem-img { width: 110px; height: 110px; }
+}
+
+.hero-tagline {
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #0A0A0A;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.hero-pillars-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 11;
+}
+
+.hero-pillars-img {
+  width: 300px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+@media (min-width: 480px) {
+  .hero-pillars-img { width: 360px; }
+}
+@media (min-width: 640px) {
+  .hero-pillars-img { width: 420px; }
+}
+@media (min-width: 1024px) {
+  .hero-pillars-img { width: 480px; }
+}
+
+/* ─── Hero Pill Navbar ──────────────────────────────────────────────────────
+   Floating pill-shaped nav rendered inside the hero section only.
+   The global Navbar component (Navbar.tsx) is hidden on the homepage until
+   the user scrolls past the hero — this pill fills that gap.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.hero-pill-nav {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: rgba(240, 236, 230, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(10,10,10,0.10);
+  border-radius: 999px;
+  padding: 8px 10px 8px 18px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+  width: calc(100% - 40px);
+  max-width: 900px;
+}
+
+/* Logo */
+.hero-pill-logo {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  color: #0A0A0A;
+  text-decoration: none;
+  flex-shrink: 0;
+  line-height: 1;
+  margin-right: auto;
+}
+.hero-pill-logo span {
+  color: #D91E18;
+}
+
+/* Nav links */
+.hero-pill-links {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+}
+
+.hero-pill-links li a {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #0A0A0A;
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 999px;
+  transition: color 0.2s ease, background 0.2s ease;
+  white-space: nowrap;
+}
+.hero-pill-links li a:hover {
+  color: #D91E18;
+}
+/* Active link highlight (matches reference: PRODUCTS in red) */
+.hero-pill-links li a.nav-active,
+.hero-pill-links li:first-child a {
+  color: #D91E18;
+}
+
+/* Cart button */
+.hero-pill-cart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #0A0A0A;
+  color: #FFFFFF;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-left: 8px;
+  position: relative;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.hero-pill-cart:hover {
+  background: #D91E18;
+}
+
+/* Hide pill nav on mobile to avoid crowding — keep only logo + cart */
+@media (max-width: 639px) {
+  .hero-pill-links {
+    display: none;
+  }
+  .hero-pill-nav {
+    padding: 8px 8px 8px 16px;
+  }
+}

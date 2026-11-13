@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import gsap from 'gsap';
 import { useCart } from '@/context/CartContext';
 
@@ -56,38 +57,7 @@ export default function Hero() {
       });
     });
 
-    // 2. Sliding Magnetic Pill Behind Navbar Links
-    const navContainer = document.getElementById('nav-links-container');
-    const navPill = document.getElementById('nav-hover-pill');
-    const navItems = document.querySelectorAll<HTMLElement>('#nav-links-container .nav-item');
-
-    const handleNavItemEnter = (e: MouseEvent) => {
-      if (!navContainer || !navPill) return;
-      const cRect = navContainer.getBoundingClientRect();
-      const iRect = (e.currentTarget as HTMLElement).getBoundingClientRect();
-      gsap.to(navPill, {
-        x: iRect.left - cRect.left,
-        width: iRect.width,
-        opacity: 1,
-        duration: 0.36,
-        ease: 'expo.out',
-      });
-    };
-
-    const handleNavLeave = () => {
-      if (navPill) {
-        gsap.to(navPill, { opacity: 0, duration: 0.25, ease: 'power2.out' });
-      }
-    };
-
-    if (navContainer && navPill) {
-      navItems.forEach((item) => {
-        item.addEventListener('mouseenter', handleNavItemEnter);
-      });
-      navContainer.addEventListener('mouseleave', handleNavLeave);
-    }
-
-    // 3. Staggered Entrance Animation for YOGNA Letters & Navbar
+    // 3. Staggered Entrance Animation for YOGNA Letters
     const heroWord = document.getElementById('yogna-hero-word');
     const charSlots = document.querySelectorAll<HTMLElement>('.yogna-char-slot');
     const charInners = document.querySelectorAll<HTMLElement>('.yogna-char-inner');
@@ -100,11 +70,6 @@ export default function Hero() {
       charInners,
       { yPercent: 115, rotateX: -50 },
       { yPercent: 0, rotateX: 0, duration: 1.05, stagger: 0.06, ease: 'expo.out' }
-    );
-    gsap.fromTo(
-      '#hero-nav',
-      { y: -30, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.85, ease: 'power3.out' }
     );
 
     // 4. Continuous Flow on 12 Thick Multi-Line Curvy Background Tracks
@@ -425,9 +390,6 @@ export default function Hero() {
       if (scrollBtn) scrollBtn.removeEventListener('click', onScrollClick);
       if (scrambleTimer) clearInterval(scrambleTimer);
 
-      if (navContainer) navContainer.removeEventListener('mouseleave', handleNavLeave);
-      navItems.forEach((item) => item.removeEventListener('mouseenter', handleNavItemEnter));
-
       slotEnterCleanups.forEach((cleanup) => cleanup());
       magneticCleanups.forEach((cleanup) => cleanup());
       cursorCleanups.forEach((cleanup) => cleanup());
@@ -554,87 +516,60 @@ export default function Hero() {
           </g>
         </svg>
 
-        {/* LAYER 2: Floating Frosted Pill Navbar */}
-        <header className="relative z-20 w-full max-w-[1260px] mx-auto pt-1">
-          <nav
-            id="hero-nav"
-            className="hero-navbar rounded-full px-5 sm:px-8 py-3 sm:py-3.5 flex items-center justify-between"
-          >
-            <a
-              href="#hero-stage"
-              id="brand-logo"
-              data-cursor="BRAND"
-              className="magnetic-el inline-flex items-center font-display-condensed text-2xl sm:text-[28px] tracking-normal select-none focus:outline-none"
+
+
+        {/* LAYER 2: Floating Pill Navbar — visible only inside the hero */}
+        <div className="relative z-20 flex-shrink-0 w-full flex justify-center pt-2 sm:pt-3">
+          <nav className="hero-pill-nav">
+            {/* Logo left */}
+            <Link href="/" className="hero-pill-logo" aria-label="YOGNA Home">
+              YOG<span>NA</span>
+            </Link>
+
+            {/* Nav links centre-right */}
+            <ul className="hero-pill-links">
+              <li><Link href="/products" className="ln-roll-link">PRODUCTS</Link></li>
+              <li><a href="/#services" className="ln-roll-link">SERVICES</a></li>
+              <li><a href="/#partners" className="ln-roll-link">PARTNERS</a></li>
+              <li><a href="/#contact" className="ln-roll-link">CONTACT</a></li>
+            </ul>
+
+            {/* Cart icon far right */}
+            <button
+              type="button"
+              className="hero-pill-cart magnetic-el"
+              onClick={openCart}
+              aria-label={`Open enquiry cart, ${count} item${count !== 1 ? 's' : ''}`}
             >
-              <span className="logo-yog text-[#0A0A0A]">YOG</span>
-              <span className="logo-na text-[#D91E18]">NA</span>
-            </a>
-
-            <div className="flex items-center gap-4 sm:gap-8 md:gap-10">
-              <div
-                id="nav-links-container"
-                className="relative hidden md:flex items-center gap-3 lg:gap-5 text-[12px] font-medium tracking-[0.16em] text-[#0A0A0A]"
-              >
-                <span id="nav-hover-pill" aria-hidden="true" />
-                <Link
-                  href="/products"
-                  data-cursor="EXPLORE"
-                  className="nav-item ln-roll-link uppercase focus:outline-none"
-                >
-                  PRODUCTS
-                </Link>
-                <a
-                  href="#services"
-                  data-cursor="EXPLORE"
-                  className="nav-item ln-roll-link uppercase focus:outline-none"
-                >
-                  SERVICES
-                </a>
-                <a
-                  href="#partners"
-                  data-cursor="EXPLORE"
-                  className="nav-item ln-roll-link uppercase focus:outline-none"
-                >
-                  PARTNERS
-                </a>
-                <a
-                  href="#contact"
-                  data-cursor="CONNECT"
-                  className="nav-item ln-roll-link uppercase focus:outline-none"
-                >
-                  CONTACT
-                </a>
-              </div>
-
-              <button
-                type="button"
-                id="cart-btn"
-                data-cursor="CART"
-                aria-label="Cart"
-                onClick={openCart}
-                className="magnetic-el relative w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#0A0A0A] text-white flex items-center justify-center shadow-md hover:bg-[#D91E18] transition-colors duration-300 focus:outline-none"
-              >
-                <svg
-                  className="w-4 h-4 sm:w-[18px] sm:h-[18px]"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.9"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <circle cx="9" cy="21" r="1.5" />
-                  <circle cx="19" cy="21" r="1.5" />
-                  <path d="M2.5 3h2.8l2.4 11.4a2 2 0 0 0 2 1.6h9.5a2 2 0 0 0 1.9-1.4L23 6H6.2" />
-                </svg>
-                {count > 0 && <span className="hero-cart-badge">{count}</span>}
-              </button>
-            </div>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <circle cx="9" cy="21" r="1" />
+                <circle cx="20" cy="21" r="1" />
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+              </svg>
+              {count > 0 && (
+                <span className="cart-badge" aria-hidden="true">{count > 99 ? '99+' : count}</span>
+              )}
+            </button>
           </nav>
-        </header>
+        </div>
 
-        {/* LAYER 3: Centerpiece Giant "YOGNA" Typography */}
-        <main className="relative z-10 my-auto flex flex-col items-center justify-center select-none py-6">
+
+        {/* LAYER 3: Centerpiece Giant "YOGNA" Typography + Hero Composition */}
+        <main className="relative z-10 my-auto flex flex-col items-center justify-center select-none py-2">
+
+          {/* Circular Logo Emblem above heading */}
+          <div className="hero-emblem-wrap mb-1 sm:mb-2">
+            <Image
+              src="/images/yogna-logo-emblem.png"
+              alt="YOGNA Emblem"
+              width={90}
+              height={90}
+              className="hero-emblem-img"
+              priority
+            />
+          </div>
+
+          {/* YOGNA large letters */}
           <div
             id="yogna-hero-word"
             data-cursor="KINETIC"
@@ -658,6 +593,24 @@ export default function Hero() {
               </div>
             ))}
           </div>
+
+          {/* Tagline */}
+          <p className="hero-tagline tracking-[0.22em] uppercase font-semibold text-[#0A0A0A] text-[11px] sm:text-[13px] md:text-[15px] mt-1 sm:mt-2 mb-4 sm:mb-5 select-none">
+            HEALTH, HYGIENE &amp; MORE
+          </p>
+
+          {/* Four Pillars Icon Strip */}
+          <div className="hero-pillars-wrap">
+            <Image
+              src="/images/hero-pillars.png"
+              alt="Care, Clean, Comfort, Dignity"
+              width={420}
+              height={110}
+              className="hero-pillars-img"
+              priority
+            />
+          </div>
+
         </main>
 
         {/* LAYER 4: Bottom Metadata Bar */}
