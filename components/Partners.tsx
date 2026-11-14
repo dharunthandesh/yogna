@@ -23,6 +23,21 @@ const PARTNERS = [
     name: 'Roots Hygiene Solutions',
     desc: 'Authorized distribution and service partner for industrial cleaning equipment and washroom hygiene infrastructure.',
   },
+  {
+    abbr: 'PC',
+    name: 'Pestology Combines',
+    desc: 'Trusted partner providing specialized pest management, flying insect control, and environmental hygiene solutions.',
+  },
+  {
+    abbr: 'PHI',
+    name: 'Pudumjee Hygiene International Hygiene Solutions',
+    desc: 'Premier partner for away-from-home tissue dispensers, sanitization papers, and specialized institutional hygiene systems.',
+  },
+  {
+    abbr: 'ASPEE',
+    name: 'Aspee Agro Equipment Pvt Ltd',
+    desc: 'Pioneering partner for professional-grade agricultural sprayers, disinfection equipment, foggers, and high-efficiency spraying technology.',
+  },
 ];
 
 export default function Partners() {
