@@ -1,4 +1,4 @@
-﻿@import "tailwindcss";
+@import "tailwindcss";
 
 /* ─── YOGNA Design System ─────────────────────────────────── */
 :root {
@@ -341,8 +341,8 @@ body.cursor-hover-cta .cursor-text {
   font-weight: 600;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: var(--black);
-  opacity: 0.5;
+  color: #8B0000;
+  opacity: 1;
 }
 
 .hero-scroll-hint {
@@ -2878,7 +2878,7 @@ body.cursor-hover-cta .cursor-text {
   letter-spacing: 0.22em;
   text-transform: uppercase;
   font-weight: 600;
-  color: #0A0A0A;
+  color: #8B0000;
   text-align: center;
   line-height: 1.4;
 }

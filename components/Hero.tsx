@@ -563,7 +563,7 @@ export default function Hero() {
           </div>
 
           {/* Tagline */}
-          <p className="hero-tagline tracking-[0.22em] uppercase font-semibold text-[#0A0A0A] text-[11px] sm:text-[13px] md:text-[15px] mt-1 sm:mt-2 mb-4 sm:mb-5 select-none">
+          <p className="hero-tagline tracking-[0.22em] uppercase font-semibold text-[#8B0000] text-[11px] sm:text-[13px] md:text-[15px] mt-1 sm:mt-2 mb-4 sm:mb-5 select-none">
             HEALTH, HYGIENE &amp; MORE
           </p>
 

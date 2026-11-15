@@ -8,11 +8,11 @@ import CartToast from '@/components/CartToast';
 
 export const metadata: Metadata = {
   title: 'YOGNA — Corporate Hygiene Solutions',
-  description: 'India\'s premier automated eco-friendly washroom hygiene systems. Touchless dispensers, bio-sanitizers, and feminine hygiene systems for commercial establishments.',
-  keywords: ['corporate hygiene', 'washroom', 'touchless dispenser', 'bio-sanitizer', 'feminine hygiene', 'YOGNA'],
+  description: 'India\'s premier corporate hygiene solutions provider. Comprehensive, eco-friendly hygiene, sanitization, and specialized cleaning systems for commercial, industrial, and institutional establishments.',
+  keywords: ['corporate hygiene', 'hygiene solutions', 'industrial cleaning', 'commercial hygiene', 'sanitization', 'YOGNA'],
   openGraph: {
     title: 'YOGNA — Corporate Hygiene Solutions',
-    description: 'Automated, eco-friendly washroom hygiene systems for commercial establishments.',
+    description: 'Comprehensive, eco-friendly hygiene and sanitization systems for commercial and industrial establishments.',
     type: 'website',
   },
 };

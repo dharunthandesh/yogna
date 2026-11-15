@@ -17,6 +17,49 @@ const CATEGORY_COLORS: Record<string, string> = {
   'feminine-hygiene':  '#1c1c1c',
 };
 
+/* ── 7 Consolidated categories for horizontal tab bar ─────────── */
+const GROUPED_CATEGORIES = [
+  {
+    id: 'washroom-hygiene',
+    name: 'Washroom Hygiene Solutions',
+    categoryIds: ['aerosol-dispenser', 'aroma-diffusers', 'urinal-hygiene', 'soap-dispenser', 'paper-dispenser', 'hand-dryer', 'feminine-hygiene'],
+  },
+  {
+    id: 'floor-cleaning-machines',
+    name: 'Floor Cleaning Machines',
+    categoryIds: ['sweepers', 'scrubbers', 'carpet-cleaners', 'escalator-cleaner'],
+  },
+  {
+    id: 'vacuum-cleaners',
+    name: 'Vacuum Cleaners',
+    categoryIds: ['vacuum-cleaners', 'industrial-vacuum'],
+  },
+  {
+    id: 'high-pressure-steam',
+    name: 'High-Pressure & Steam Cleaning',
+    categoryIds: ['high-pressure-jets', 'steam-cleaners'],
+  },
+  {
+    id: 'janitorial-tools-consumables',
+    name: 'Janitorial Tools & Consumables',
+    categoryIds: ['janitorial', 'pads-detergents'],
+  },
+  {
+    id: 'pest-insect-control',
+    name: 'Pest & Insect Control',
+    categoryIds: ['flycatchers'],
+  },
+  {
+    id: 'sprayers-fogging',
+    name: 'Sprayers & Fogging Equipment',
+    categoryIds: ['aspee-sprayers'],
+  },
+];
+
+// Build a quick lookup: grouped category id → array of original categoryIds
+const GROUPED_LOOKUP: Record<string, string[]> = {};
+GROUPED_CATEGORIES.forEach(g => { GROUPED_LOOKUP[g.id] = g.categoryIds; });
+
 function ProductsContent() {
   const searchParams = useSearchParams();
   const initialCategory = searchParams.get('category') ?? 'all';
@@ -58,7 +101,16 @@ function ProductsContent() {
   }, [activeCategory]);
 
   const filtered = PRODUCTS.filter(p => {
-    const matchCat  = activeCategory === 'all' || p.categoryId === activeCategory;
+    let matchCat: boolean;
+    if (activeCategory === 'all') {
+      matchCat = true;
+    } else if (GROUPED_LOOKUP[activeCategory]) {
+      // Grouped category tab clicked — match any original category in the group
+      matchCat = GROUPED_LOOKUP[activeCategory].includes(p.categoryId);
+    } else {
+      // Original category (sidebar) clicked
+      matchCat = p.categoryId === activeCategory;
+    }
     const matchSearch = p.name.toLowerCase().includes(search.toLowerCase());
     return matchCat && matchSearch;
   });
@@ -144,7 +196,7 @@ function ProductsContent() {
 
         {/* ── Main Content ──────────────────────────────────── */}
         <div className="pg-main">
-          {/* Category tabs */}
+          {/* Category tabs – 7 consolidated groups */}
           <div ref={tabsRef} className="pg-tabs" role="tablist">
             <button
               role="tab"
@@ -153,16 +205,21 @@ function ProductsContent() {
             >
               ALL PRODUCTS
             </button>
-            {CATEGORIES.map(cat => (
-              <button
-                key={cat.id}
-                role="tab"
-                className={`pg-tab ${activeCategory === cat.id ? 'active' : ''}`}
-                onClick={() => setActiveCategory(cat.id)}
-              >
-                {cat.name.toUpperCase()}
-              </button>
-            ))}
+            {GROUPED_CATEGORIES.map(group => {
+              const isActive =
+                activeCategory === group.id ||
+                group.categoryIds.includes(activeCategory);
+              return (
+                <button
+                  key={group.id}
+                  role="tab"
+                  className={`pg-tab ${isActive ? 'active' : ''}`}
+                  onClick={() => setActiveCategory(group.id)}
+                >
+                  {group.name.toUpperCase()}
+                </button>
+              );
+            })}
           </div>
 
           {/* Result count */}

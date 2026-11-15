@@ -17,7 +17,7 @@ export default function Footer() {
               color: 'rgba(255,255,255,0.5)',
               maxWidth: '280px'
             }}>
-              India&apos;s premier corporate hygiene services provider. Automated, eco-friendly washroom systems for commercial establishments.
+              India&apos;s premier corporate hygiene solutions provider. Comprehensive, eco-friendly hygiene and sanitization systems for commercial, industrial, and institutional spaces.
             </p>
           </div>
 
@@ -25,10 +25,13 @@ export default function Footer() {
           <div className="footer-col">
             <p className="footer-col-title">Products</p>
             <ul>
-              <li><Link href="/products?category=soap-dispenser">Touchless Dispensers</Link></li>
-              <li><Link href="/products?category=urinal-hygiene">Bio-Sanitizers</Link></li>
-              <li><Link href="/products?category=feminine-hygiene">Feminine Hygiene</Link></li>
-              <li><Link href="/products?category=aerosol-dispenser">Air Care Systems</Link></li>
+              <li><Link href="/products?category=washroom-hygiene">Washroom Hygiene Solutions</Link></li>
+              <li><Link href="/products?category=floor-cleaning-machines">Floor Cleaning Machines</Link></li>
+              <li><Link href="/products?category=vacuum-cleaners">Vacuum Cleaners</Link></li>
+              <li><Link href="/products?category=high-pressure-steam">High-Pressure &amp; Steam Cleaning</Link></li>
+              <li><Link href="/products?category=janitorial-tools-consumables">Janitorial Tools &amp; Consumables</Link></li>
+              <li><Link href="/products?category=pest-insect-control">Pest &amp; Insect Control</Link></li>
+              <li><Link href="/products?category=sprayers-fogging">Sprayers &amp; Fogging Equipment</Link></li>
             </ul>
           </div>
 
