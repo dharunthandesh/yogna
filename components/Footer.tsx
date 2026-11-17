@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Footer() {
@@ -9,7 +10,16 @@ export default function Footer() {
         <div className="footer-top" style={{ paddingTop: '80px' }}>
           {/* Brand */}
           <div>
-            <div className="footer-brand">YOG<span>NA</span></div>
+            <div className="footer-brand" style={{ display: 'inline-flex', alignItems: 'center', gap: '16px' }}>
+              <Image
+                src="/images/yogna-logo-emblem.png"
+                alt="YOGNA Emblem"
+                width={56}
+                height={56}
+                className="object-contain"
+              />
+              <span>YOG<span>NA</span></span>
+            </div>
             <p style={{
               marginTop: '24px',
               fontSize: '13px',

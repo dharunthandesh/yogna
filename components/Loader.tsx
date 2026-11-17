@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 import gsap from 'gsap';
 
 export default function Loader({ onComplete }: { onComplete: () => void }) {
@@ -58,7 +59,17 @@ export default function Loader({ onComplete }: { onComplete: () => void }) {
   return (
     <div ref={loaderRef} className="loader">
       <div ref={flashRef} className="loader-flash" />
-      <div ref={textRef} className="loader-text">YOGNA</div>
+      <div ref={textRef} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
+        <Image
+          src="/images/yogna-logo-emblem.png"
+          alt="YOGNA Emblem"
+          width={80}
+          height={80}
+          className="object-contain"
+          priority
+        />
+        <div className="loader-text">YOGNA</div>
+      </div>
       <div ref={taglineRef} className="loader-tagline">Corporate Hygiene Solutions</div>
     </div>
   );

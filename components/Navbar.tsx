@@ -1,5 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useCart } from '@/context/CartContext';
@@ -30,8 +31,16 @@ export default function Navbar() {
 
   return (
     <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
-      <Link href="/" className="navbar-logo" onClick={closeMenu}>
-        YOG<span>NA</span>
+      <Link href="/" className="navbar-logo" onClick={closeMenu} style={{ display: 'inline-flex', alignItems: 'center', gap: '10px' }}>
+        <Image
+          src="/images/yogna-logo-emblem.png"
+          alt="YOGNA Emblem"
+          width={32}
+          height={32}
+          className="w-8 h-8 object-contain"
+          priority
+        />
+        <span>YOG<span>NA</span></span>
       </Link>
       
       {/* Desktop Links */}
@@ -125,8 +134,15 @@ export default function Navbar() {
       {/* Mobile Menu Overlay */}
       <div className={`mobile-menu-overlay ${menuOpen ? 'mobile-menu-open' : ''}`}>
         <div className="mobile-menu-header">
-          <Link href="/" className="navbar-logo" onClick={closeMenu}>
-            YOG<span>NA</span>
+          <Link href="/" className="navbar-logo" onClick={closeMenu} style={{ display: 'inline-flex', alignItems: 'center', gap: '10px' }}>
+            <Image
+              src="/images/yogna-logo-emblem.png"
+              alt="YOGNA Emblem"
+              width={32}
+              height={32}
+              className="w-8 h-8 object-contain"
+            />
+            <span>YOG<span>NA</span></span>
           </Link>
           <button className="mobile-menu-close" onClick={closeMenu} aria-label="Close menu">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">

@@ -36,7 +36,16 @@ export default function CartDrawer() {
       <aside className={`cart-drawer ${isCartOpen ? 'open' : ''}`} aria-label="Enquiry list">
         {/* Header */}
         <div className="cart-drawer-header">
-          <h2 className="cart-drawer-title">Your Enquiry List</h2>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <Image
+              src="/images/yogna-logo-emblem.png"
+              alt="YOGNA Emblem"
+              width={26}
+              height={26}
+              className="object-contain"
+            />
+            <h2 className="cart-drawer-title">Your Enquiry List</h2>
+          </div>
           <button className="cart-drawer-close" onClick={closeCart} aria-label="Close">✕</button>
         </div>
 
