@@ -58,7 +58,7 @@ export default function Footer() {
         </div>
 
         <div className="footer-bottom">
-          <p className="footer-copy">© 2025 YOGNA Corporate Hygiene Solutions. All rights reserved.</p>
+          <p className="footer-copy">© 2026 YOGNA Corporate Hygiene Solutions. All rights reserved.</p>
           <p className="footer-copy" style={{ opacity: 0.2 }}>Designed by TRIYO</p>
         </div>
       </div>
